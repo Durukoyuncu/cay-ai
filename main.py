@@ -6,7 +6,8 @@ import os
 os.environ["GOOGLE_API_USE_MTLS_ENDPOINT"] = "never"
 
 # 2. API Anahtarın (Boşluk kalmadığından emin ol)
-API_KEY = "AIzaSyD2ZHeshJaw2WlDon9JIkP3FxGqUc3-GFo".strip()
+# Kodu böyle yazarsan anahtarın dışarıdan görünmez
+API_KEY = st.secrets["AIzaSyAbyqs0zDNdOlNCQAtGX46AFE3s9YP-yCw"]
 
 # 3. Bağlantı Kurma
 genai.configure(api_key=API_KEY)
@@ -46,3 +47,4 @@ if prompt := st.chat_input("Selam ver bakalım..."):
         except Exception as e:
 
             st.error(f"Bir hata oluştu: {e}")
+
