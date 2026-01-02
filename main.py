@@ -8,6 +8,7 @@ except Exception as e:
     st.error("Secrets ayarlarında GROQ_API_KEY bulunamadı!")
 
 st.set_page_config(page_title="Çay-AI", page_icon="☕")
+client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 st.title("☕ Çay-AI (Hızlı & Limitsiz)")
 
 if "messages" not in st.session_state:
@@ -37,6 +38,7 @@ if prompt := st.chat_input("Çaylar benden, sohbet senden..."):
             st.session_state.messages.append({"role": "assistant", "content": response})
         except Exception as e:
             st.error(f"Bir hata oluştu: {e}")
+
 
 
 
