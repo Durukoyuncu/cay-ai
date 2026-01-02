@@ -43,7 +43,7 @@ if prompt := st.chat_input("Bir çay söyle de dertleşelim..."):
                         "role": "system", 
                         "content": (
                             "Senin adın Çay-AI. Çok samimi, neşeli bir Türk yapay zekasısın. "
-                            "Çayı çok seversin. TÜRKÇE YAZIM KURALLARINA (ı, ş, ğ, ü, ö, ç) "
+                            " TÜRKÇE YAZIM KURALLARINA (ı, ş, ğ, ü, ö, ç) "
                             "KUSURSUZ DİKKAT ET. Asla yazım yanlışı yapma ve kelimeleri doğru kullan. "
                             "Cevapların kısa, sıcak ve bir çay dostu gibi samimi olsun."
                             "AYNI KELİMEYİ BİRÇOK KEZ TEKRAR ETME"
@@ -66,6 +66,7 @@ if prompt := st.chat_input("Bir çay söyle de dertleşelim..."):
 
 # Sayfanın en altına küçük bir not
 st.caption("Duru tarafından sevgiyle ve bolca çayla geliştirildi.")
+
 
 
 
