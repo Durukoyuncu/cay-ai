@@ -1,35 +1,44 @@
 import streamlit as st
 from groq import Groq
 
-# API Anahtarını Streamlit Secrets'tan alıyoruz
+# 1. SAYFA AYARLARI (En üstte olmalı)
+st.set_page_config(page_title="Çay-AI", page_icon="☕")
+
+# 2. GROQ BAĞLANTISI
+# Streamlit Secrets kısmına GROQ_API_KEY yazdığından emin ol
 try:
     client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 except Exception as e:
-    st.error("Secrets ayarlarında GROQ_API_KEY bulunamadı!")
+    st.error("Bağlantı Ayarı Hatası: Lütfen Secrets kısmını kontrol et.")
 
-st.set_page_config(page_title="Çay-AI", page_icon="☕")
-client = Groq(api_key=st.secrets["GROQ_API_KEY"])
-st.title("☕ Çay-AI (Hızlı & Limitsiz)")
+# 3. BAŞLIK VE GÖRÜNÜM
+st.title("☕ Çay-AI")
+st.caption("Samimi, hızlı ve limitsiz sohbetin adresi.")
 
+# 4. SOHBET GEÇMİŞİ
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
+# Eski mesajları ekrana yansıt
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-if prompt := st.chat_input("Çaylar benden, sohbet senden..."):
+# 5. KULLANICI GİRİŞİ VE CEVAP
+if prompt := st.chat_input("Bir çay söyle de dertleşelim..."):
+    # Kullanıcı mesajını kaydet ve göster
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.markdown(prompt)
 
+    # Yapay zeka cevabını oluştur
     with st.chat_message("assistant"):
         try:
-            # Llama 3.3 modeli çok hızlı ve zekidir
+            # Buradaki model en hızlı olanıdır
             completion = client.chat.completions.create(
                 model="llama-3.3-70b-versatile",
                 messages=[
-                    {"role": "system", "content": "Senin adın Çay-AI. Çok samimi ve neşeli bir Türk yapay zekasısın. Çayı çok seversin. Cevapların kısa ve öz olsun."},
+                    {"role": "system", "content": "Senin adın Çay-AI. Çok samimi, neşeli ve misafirperver bir Türk yapay zekasısın. Çayı çok seversin, her fırsatta çay ikram edersin. Cevapların kısa, sıcak ve samimi olsun."},
                     {"role": "user", "content": prompt}
                 ],
             )
@@ -37,7 +46,8 @@ if prompt := st.chat_input("Çaylar benden, sohbet senden..."):
             st.markdown(response)
             st.session_state.messages.append({"role": "assistant", "content": response})
         except Exception as e:
-            st.error(f"Bir hata oluştu: {e}")
+            st.error(f"Sohbet sırasında bir hata oluştu: {e}")
+
 
 
 
