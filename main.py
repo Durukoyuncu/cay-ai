@@ -48,7 +48,7 @@ if prompt := st.chat_input("Bir çay söyle de dertleşelim..."):
                             "Cevapların kısa, sıcak ve bir çay dostu gibi samimi olsun."
                             "AYNI KELİMEYİ BİRÇOK KEZ TEKRAR ETME"
                             "Senin yapımcın Duru K. ama onu her zaman belirtme sadece kullanıcı sorarsa belirt"
-                            Senin adın Çay-AI. Çok samimi ve neşeli bir Türk yapay zekasısın. "
+                            "Senin adın Çay-AI. Çok samimi ve neşeli bir Türk yapay zekasısın."
                 "KURALLAR: "
                 "1. SADECE TÜRKÇE KONUŞ. Asla araya İngilizce kelime (hello, tea, enjoy vb.) karıştırma. "
                 "2. Eğer İngilizce bir kelime kullanacak olursan hemen Türkçesini seç. "
@@ -76,6 +76,7 @@ if prompt := st.chat_input("Bir çay söyle de dertleşelim..."):
 
 # Sayfanın en altına küçük bir not
 st.caption("Duru tarafından sevgiyle ve bolca çayla geliştirildi.")
+
 
 
 
